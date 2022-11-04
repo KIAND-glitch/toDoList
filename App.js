@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
@@ -16,6 +16,18 @@ export default function App() {
         </View>
 
       </View>
+      {/*write a task section*/}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios'? 'padding':'height'}
+        style={styles.writeTaskWrapper}
+        >
+          <TextInput style={styles.input} placeholder={'write a task'}/>
+          <TouchableOpacity >
+            <View style={styles.addWrapper}>
+              <Text style={styles.addText}>+</Text>
+            </View>
+          </TouchableOpacity>
+      </KeyboardAvoidingView>
 
     </View>
   );
@@ -27,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E8EAED',
   },
     tasksWrapper: {
-      paddingTop: 40,
+      paddingTop: 80,
       paddingHorizontal: 20,
     },
     sectionTitle: {
@@ -37,4 +49,32 @@ const styles = StyleSheet.create({
     items: {
       marginTop:30,
     },
+    writeTaskWrapper: {
+      position: 'absolute',
+      bottom: 60,
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+    },
+    input: {
+      paddingVertical: 15,
+      width: 350,
+      paddingHorizontal: 15,
+      backgroundColor: 'white',
+      borderRadius: 60,
+      borderWidth: 1,
+      borderColor:  '#C0C0C0'
+    },
+    addWrapper: {
+      width: 50,
+      height: 50,
+      backgroundColor: 'white',
+      borderRadius: 60,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor:  '#C0C0C0'
+    },
+    addText: {},
 });
