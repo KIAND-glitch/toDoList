@@ -4,16 +4,29 @@ import Task from './components/Task';
 
 export default function App() {
   const [task, setTask] = useState();
-  const [taskItems, setTaskItems] = useState([]);
+  const [taskItems, setTaskItems] = useState(['Task 1', 'Task 2']);
 
   const handleAddTask = () => {
     setTaskItems([...taskItems, task]);
     setTask(null);
   }
 
+  const handleTaskComplete = (index) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+    setTaskItems(itemsCopy);
+  }
+
   const todaysTasks = taskItems.map((item, index) => {
-    if(item != null) return <Task key={index} text={item}/>
+    if(item != null){ 
+      return (
+        <TouchableOpacity key={index} onPress={() => handleTaskComplete(index)}>
+          <Task text={item}/>
+        </TouchableOpacity>
+      );
+    }
   })
+
   return (
     <View style={styles.container}>
 
@@ -23,8 +36,6 @@ export default function App() {
 
         {/* task items */}
         <View style={styles.items}>
-          <Task text="Task 1"/>
-          <Task text="Task 2"/>
           {todaysTasks}
         </View>
 
