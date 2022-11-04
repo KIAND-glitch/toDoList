@@ -10,5 +10,6 @@ A simple todo list app using React Native which allows users to enter tasks for 
 4. `expo start`
 5. Scan the QR code on screen to run it on your device, or write `i` or `a` in your expo terminal to open it in either iOS or Android
 
-![image](https://user-images.githubusercontent.com/67940459/199895762-6b5a7f9f-7e1f-4c29-8021-cfb2ba3acc2a.png)
+![image](https://user-images.githubusercontent.com/67940459/199896235-0cab7f71-599f-464e-9f0a-b932ddd3b9ad.png)
+
 
