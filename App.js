@@ -1,7 +1,19 @@
+import react, {useState} from 'react';
 import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import Task from './components/Task';
 
 export default function App() {
+  const [task, setTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+  const handleAddTask = () => {
+    setTaskItems([...taskItems, task]);
+    setTask(null);
+  }
+
+  const todaysTasks = taskItems.map((item, index) => {
+    if(item != null) return <Task key={index} text={item}/>
+  })
   return (
     <View style={styles.container}>
 
@@ -13,6 +25,7 @@ export default function App() {
         <View style={styles.items}>
           <Task text="Task 1"/>
           <Task text="Task 2"/>
+          {todaysTasks}
         </View>
 
       </View>
@@ -21,8 +34,8 @@ export default function App() {
         behavior={Platform.OS === 'ios'? 'padding':'height'}
         style={styles.writeTaskWrapper}
         >
-          <TextInput style={styles.input} placeholder={'write a task'}/>
-          <TouchableOpacity >
+          <TextInput style={styles.input} placeholder={'write a task'} value={task} onChangeText={text => setTask(text)}/>
+          <TouchableOpacity onPress={()=>handleAddTask()}>
             <View style={styles.addWrapper}>
               <Text style={styles.addText}>+</Text>
             </View>
@@ -56,10 +69,11 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignItems: 'center',
+      paddingHorizontal: 20,
     },
     input: {
       paddingVertical: 15,
-      width: 350,
+      width: 300,
       paddingHorizontal: 15,
       backgroundColor: 'white',
       borderRadius: 60,
